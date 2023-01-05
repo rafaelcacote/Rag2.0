@@ -92,6 +92,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $setores = Setor::pluck('name', 'id')->all();
         return view('users.show', compact('user'));
     }
 
@@ -136,15 +137,17 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
+        $user['active'] = (!isset($request['status']))? 0 : 1;
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $user->assignRole($request->input('roles'));
 
+        $user->setores()->sync($request->input('setores'));
+
         toast('Usuário Editado com sucesso','success');
 
-        return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+        return redirect()->route('users.index');
     }
 
     /**

@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'id',
         'name',
+        'active',
         'email',
         'password',
     ];
@@ -47,9 +48,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(
             Setor::class,
-            'usersetores',
-            'user_id',
-            'setor_id'
+            'users_has_setores',
+            'users_id',
+            'setores_id'
         );
     }
 

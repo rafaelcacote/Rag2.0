@@ -39,6 +39,16 @@
                                         @endforeach
                                     @endif</td>
                                   </tr>
+                                  <tr>
+                                    <td width="200px"><strong>Setores:</strong></td>
+                                    <td>
+                                            @if(!empty($user->setores))
+                                                @foreach ($user->setores as $key => $setor)
+                                                <label class="badge badge-info">{{ $setor->name }}</label>
+                                                @endforeach
+                                            @endif
+                                   </td>
+                                  </tr>
                                 </tbody>
                               </table>
                             </div>

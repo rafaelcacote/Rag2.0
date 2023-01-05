@@ -78,14 +78,13 @@
                                     </div>
 
                                 <div class="col-sm-12">
-                                    <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}">
+                                    <div class="form-group {{ $errors->has('setores') ? 'has-error' : '' }}">
                                         <label for="setor">Setores</label>
-                                        <select name="setores[]" class="form-control select2-multiple" multiple="multiple"
-                                            data-placeholder="Vincular Área Usuário" required="">
-                                            @foreach ($setores as $id => $setor)
+                                        <select name="setores[]" id="setores" class="form-control select2-multiple" multiple="multiple">
+                                            @foreach ($setores as $id => $setores)
                                             <option value="{{ $id }}"
                                                 {{ in_array($id, old('setores', [])) || (isset($user) && $user->setores->contains($id)) ? 'selected' : '' }}>
-                                                {{ $setor }}
+                                                {{ $setores }}
                                             </option>
                                         @endforeach
                                         </select>
@@ -116,9 +115,18 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" @if ($user->active == true) checked @endif>
+                                        <input type="hidden" name="active" value="0">
+                                        <input type="checkbox" name="active" class="custom-control-input" id="customSwitch1" value="1" @if ($user->active == true) checked @endif>
                                         <label class="custom-control-label" for="customSwitch1">Ativo</label>
                                     </div>
+
+
+                                    {{-- <label>
+                                        <input type="hidden" name="active" value="0">
+                                        <input type="checkbox" name="active" value="1" class="minimal"
+                                            id="icheck" @if ($user->active == true) checked @endif>
+                                        Ativo
+                                    </label> --}}
 
                                 </div>
                             </div>

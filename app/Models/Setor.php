@@ -27,9 +27,9 @@ class Setor extends Authenticatable
     {
         return $this->belongsToMany(
             User::class,
-            'usersetores',
-            'setor_id',
-            'user_id'
+            'users_has_setores',
+            'setores_id',
+            'users_id'
         );
     }
 

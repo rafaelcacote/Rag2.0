@@ -107,7 +107,7 @@
                             </td>
                             <td>
                                 @foreach ($user->setores as $key => $setor)
-                                                <span class="badge badge-info">{{ $setor->descricao }}</span>
+                                                <span class="badge badge-info">{{ $setor->name }}</span>
                                             @endforeach
                             </td>
 
